@@ -1,0 +1,61 @@
+<ion-content class="ion-padding">
+
+  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="cancel()">Cancel</ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button (click)="submitForm()" [strong]="true">Confirm</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-item>
+      <ion-label position="stacked">Account holder</ion-label>
+      <ion-input formControlName="accountHolder" type="text" required placeholder="Account holder"></ion-input>
+    </ion-item>
+    <span class="validation-errors" *ngIf="isSubmitted && errorControl.accountHolder.errors?.required">
+      Account Holder is required.
+    </span>
+    <ion-item>
+      <ion-label position="stacked">IBAN</ion-label>
+      <ion-input formControlName="iban" type="text" required placeholder="IBAN"></ion-input>
+    </ion-item>
+    <span class="validation-errors" *ngIf="isSubmitted && errorControl.iban.errors?.['required']">
+      IBAN is required.
+    </span>
+    <span class="validation-errors" *ngIf="isSubmitted && errorControl.iban.errors?.['iban']">
+      IBAN is invalid
+    </span>
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime color="primary" formControlName="date" size="cover">
+      </ion-datetime>
+    </ion-item>
+    <span class="validation-errors" *ngIf="isSubmitted && errorControl.date.errors?.required">
+      Date is required.
+    </span>
+    <ion-item>
+      <ion-label position="stacked">Amount</ion-label>
+      <ion-input name="amount" formControlName="amount"  type="text"
+        (keypress)="validateNumber($event)" required placeholder="Amount"></ion-input>
+    </ion-item>
+    <span class="validation-errors" *ngIf="isSubmitted && errorControl.amount.errors?.required">
+      Amount is required.
+    </span>
+    <span class="validation-errors" *ngIf="isSubmitted && errorControl.amount.errors?.minlength">
+      Min. 2 characters required.
+    </span>
+    <span class="validation-errors" *ngIf="isSubmitted && errorControl.amount.errors?.maxlength">
+      Max. 8 characters allowed.
+    </span>
+    <ion-item>
+      <ion-label position="stacked">Note</ion-label>
+      <ion-textarea formControlName="note" required placeholder="Note"></ion-textarea>
+    </ion-item>
+    <span class="validation-errors" *ngIf="isSubmitted && errorControl.note.errors?.required">
+      Note is required.
+    </span>
+  </form>
+</ion-content>

@@ -1,0 +1,3 @@
+-app name is transfer app
+-run the app using the command 'ionic serve'
+-the project will be exclude of node modules, so first you have to install the node modules using npm install.

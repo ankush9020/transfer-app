@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      TRANSFER APP
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-margin">
+  <ion-item lines="none">
+    <ion-button (click)="openModal()" expand="block" color="primary" size="medium" slot="end">
+      Create
+    </ion-button>
+  </ion-item>
+  <ion-grid class="ion-margin">
+    <ion-row>
+      <ion-col>Account holder</ion-col>
+      <ion-col>IBAN</ion-col>
+      <ion-col style="cursor: pointer;" (click)="sort('date')">Date</ion-col>
+      <ion-col style="cursor: pointer;" (click)="sort('amount')">Amount</ion-col>
+      <ion-col>Note</ion-col>
+      <ion-col>Action</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let accntHolder of usersList; index as i">
+      <ion-col>{{ accntHolder.accountHolder }}</ion-col>
+      <ion-col>{{ accntHolder.iban | ibanFormatter}}</ion-col>
+      <ion-col>{{ accntHolder.date | date}}</ion-col>
+      <ion-col>{{ accntHolder.amount | eurCurrency }}</ion-col>
+      <ion-col>{{ accntHolder.note }}</ion-col>
+      <ion-col>
+        <ion-icon  (click)="editUser(accntHolder, true)" style="cursor: pointer;" name="pencil"> </ion-icon>
+        <ion-icon (click)="deleteUser(accntHolder)" style="margin-left: 20px; cursor: pointer;" name="trash"></ion-icon>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "transfer-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
